@@ -1,0 +1,73 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33502.453
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Internal", "Internal", "{43A0EA9B-C54B-489F-A008-9C82CD2D0247}"
+	ProjectSection(SolutionItems) = preProject
+		Internal\.editorconfig = Internal\.editorconfig
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{5AACA0FB-AFC8-4FF1-894F-091522ED0E0D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dlls", "Dlls", "{6ECF7A59-883F-4D31-84B9-0CCC2CDE6323}"
+	ProjectSection(SolutionItems) = preProject
+		Dlls\ABOUT.md = Dlls\ABOUT.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CompanionFiles", "CompanionFiles", "{1EA609A2-6765-4FF1-A2DB-D754B78538E3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Skyline DataMiner", "Skyline DataMiner", "{CFA27321-FE4F-450A-BF34-57155AF9D70D}"
+	ProjectSection(SolutionItems) = preProject
+		CompanionFiles\Skyline DataMiner\AboutThisFolder.md = CompanionFiles\Skyline DataMiner\AboutThisFolder.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{948B5D73-19F0-40D2-BBA1-003F1AD1041D}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\ABOUT.md = Documentation\ABOUT.md
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F8938D60-51A0-4880-9CFC-19C66379BB5D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Code Analysis", "Code Analysis", "{1553DBD9-5FCB-4C9B-93CB-9493AA82B76E}"
+	ProjectSection(SolutionItems) = preProject
+		Internal\Code Analysis\qaction-debug.ruleset = Internal\Code Analysis\qaction-debug.ruleset
+		Internal\Code Analysis\qaction-release.ruleset = Internal\Code Analysis\qaction-release.ruleset
+		Internal\Code Analysis\stylecop.json = Internal\Code Analysis\stylecop.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TLN-AS-CreateEXPERTrakElementAndSetMesurementPointsAS", "TLN-AS-CreateEXPERTrakElementAndSetMesurementPointsAS", "{A836BE41-2971-47AC-BC5C-70D82BE0DD64}"
+	ProjectSection(SolutionItems) = preProject
+		TLN-AS-CreateEXPERTrakElementAndSetMesurementPointsAS.xml = TLN-AS-CreateEXPERTrakElementAndSetMesurementPointsAS.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Actions", "Actions", "{6A4151C5-80FD-49F5-9B51-F0392FBAA9BE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TLN-AS-CreateEXPERTrakElementAndSetMesurementPointsAS_1", "TLN-AS-CreateEXPERTrakElementAndSetMesurementPointsAS_1\TLN-AS-CreateEXPERTrakElementAndSetMesurementPointsAS_1.csproj", "{AC1BF2DE-61BC-4CE4-810B-9026BBB76864}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AC1BF2DE-61BC-4CE4-810B-9026BBB76864}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC1BF2DE-61BC-4CE4-810B-9026BBB76864}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC1BF2DE-61BC-4CE4-810B-9026BBB76864}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC1BF2DE-61BC-4CE4-810B-9026BBB76864}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CFA27321-FE4F-450A-BF34-57155AF9D70D} = {1EA609A2-6765-4FF1-A2DB-D754B78538E3}
+		{1553DBD9-5FCB-4C9B-93CB-9493AA82B76E} = {43A0EA9B-C54B-489F-A008-9C82CD2D0247}
+		{A836BE41-2971-47AC-BC5C-70D82BE0DD64} = {5AACA0FB-AFC8-4FF1-894F-091522ED0E0D}
+		{6A4151C5-80FD-49F5-9B51-F0392FBAA9BE} = {A836BE41-2971-47AC-BC5C-70D82BE0DD64}
+		{AC1BF2DE-61BC-4CE4-810B-9026BBB76864} = {6A4151C5-80FD-49F5-9B51-F0392FBAA9BE}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {70824A73-B45B-4BF2-BF25-7A2F179E018C}
+	EndGlobalSection
+EndGlobal
