@@ -7,19 +7,24 @@
 	{
 		public ElementCreationView(IEngine engine) : base(engine)
 		{
-			Label = new Label("Create new Element");
+			Label elementNameLabel = new Label("Element Name");
+			Label elementIpAddress = new Label("IP Address");
+			Label elementScript = new Label("Script to execute");
 			Create = new Button("Create");
-			ElementName = new TextBox("Element name");
-			IpAddress = new TextBox("IP Address");
-			ScriptName = new TextBox("Script to be executed");
-			Agents = new DropDown();
+			ElementName = new TextBox
+			{
+				PlaceHolder = "Element Name",
+			};
+			IpAddress = new TextBox { PlaceHolder = "IP Address"};
+			ScriptName = new TextBox("Default Script");
 
-			AddWidget(Label, 0, 0);
+			AddWidget(elementNameLabel, 0, 0);
 			AddWidget(ElementName, 0, 1);
-			AddWidget(IpAddress, 0, 2);
-			AddWidget(ScriptName, 0, 3);
-			AddWidget(Agents, 1, 0);
-			AddWidget(Create, 2, 0);
+			AddWidget(elementIpAddress, 1, 0);
+			AddWidget(IpAddress, 1, 1);
+			AddWidget(elementScript, 2, 0);
+			AddWidget(ScriptName, 2, 1);
+			AddWidget(Create, 3, 0);
 		}
 
 		public TextBox ElementName { get; private set; }
@@ -29,9 +34,5 @@
 		public TextBox ScriptName { get; private set; }
 
 		public Button Create { get; private set; }
-
-		public DropDown Agents { get; private set; }
-
-		public Label Label { get; private set; }
 	}
 }

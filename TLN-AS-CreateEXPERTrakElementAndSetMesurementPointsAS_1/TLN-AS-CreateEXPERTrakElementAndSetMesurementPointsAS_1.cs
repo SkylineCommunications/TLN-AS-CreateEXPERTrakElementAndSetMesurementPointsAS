@@ -3,6 +3,7 @@ namespace TLN_AS_CreateEXPERTrakElementAndSetMesurementPointsAS_1
 	using System;
 	using System.Collections.Generic;
 	using System.Globalization;
+	using System.Runtime.Remoting.Channels;
 	using System.Text;
 	using Skyline.DataMiner.Automation;
 	using Skyline.DataMiner.DeveloperCommunityLibrary.InteractiveAutomationToolkit;
@@ -22,6 +23,7 @@ namespace TLN_AS_CreateEXPERTrakElementAndSetMesurementPointsAS_1
 			InteractiveController controller;
 			ElementCreationModel model;
 			ElementCreationView view;
+			ElementCreationPresenter presenter;
 
 			// DO NOT REMOVE THIS COMMENTED-OUT CODE OR THE SCRIPT WON'T RUN!
 			// DataMiner evaluates if the script needs to launch in interactive mode.
@@ -35,10 +37,27 @@ namespace TLN_AS_CreateEXPERTrakElementAndSetMesurementPointsAS_1
 				controller = new InteractiveController(engine);
 				model = new ElementCreationModel(engine);
 				view = new ElementCreationView(engine);
+				presenter = new ElementCreationPresenter(view, model);
+
+				presenter.Create += (sender, args) =>
+				{
+					presenter.StoreToModel();
+				};
+				controller.Run(view);
 			}
 			catch (Exception ex)
 			{
-
+				if (ex.Message != "Automation Script Closed.")
+				{
+					if (ex.Message.Equals("Element created!"))
+					{
+						engine.ExitSuccess(ex.Message);
+					}
+					else
+					{
+						engine.ExitFail(ex.Message);
+					}
+				}
 			}
 		}
 		}
