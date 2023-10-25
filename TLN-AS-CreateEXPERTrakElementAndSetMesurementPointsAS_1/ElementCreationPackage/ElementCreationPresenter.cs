@@ -15,6 +15,8 @@
 		{
 			view = elementSelectionView;
 			model = elementModel;
+			var protocols = elementModel.LoadFromModel();
+			view.ProtocolVersions.SetOptions(protocols.Select(protocol => protocol.Version));
 
 			view.Create.Pressed += OnNextButtonPressed;
 		}
@@ -31,8 +33,9 @@
 			string elementName = view.ElementName.Text;
 			string ipAddress = view.IpAddress.Text;
 			string scriptName = view.ScriptName.Text;
+			string protocolVersion = view.ProtocolVersions.Selected;
 
-			model.SetModelData(elementName, ipAddress, scriptName);
+			model.SetModelData(elementName, ipAddress, scriptName, protocolVersion);
 			model.CreateElement();
 		}
 	}

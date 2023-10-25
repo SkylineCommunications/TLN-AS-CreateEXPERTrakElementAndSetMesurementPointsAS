@@ -16,7 +16,9 @@
 		private readonly IEngine engine;
 		private readonly IDms ds;
 		private readonly IDma elementAgent;
+		private readonly int defaultPort = 443;
 		private readonly string elementProtocolName = "Viavi Solutions XPERTrak";
+		private string elementProtocolVersion;
 		private string elementName;
 		private string elementIpAddress;
 		private string elementAutomationScript;
@@ -28,11 +30,19 @@
 			elementAgent = ds.GetAgent(Engine.SLNetRaw.ServerDetails.AgentID);
 		}
 
-		public void SetModelData(string elementName, string elementIpAddress, string elementAutomationScript)
+		public void SetModelData(string elementName, string elementIpAddress, string elementAutomationScript, string version)
 		{
 			this.elementName = elementName;
 			this.elementIpAddress = elementIpAddress;
 			this.elementAutomationScript = elementAutomationScript;
+			this.elementProtocolVersion = version;
+		}
+
+		public List<IDmsProtocol> LoadFromModel()
+		{
+			var protocols = ds.GetProtocols();
+			var protocol = protocols.Where(x => x.Name == elementProtocolName).ToList();
+			return protocol;
 		}
 
 		public void CreateElement()
@@ -50,7 +60,7 @@
 			ElementConfiguration configuration = CreateElementConfiguration();
 			if (ValidateAutomationScript())
 			{
-				DmsElementId newElementId = elementAgent.CreateElement(configuration);
+				elementAgent.CreateElement(configuration);
 				SubScriptOptions subScript = engine.PrepareSubScript(elementAutomationScript);
 				subScript.StartScript();
 				engine.ExitSuccess("Element created!");
@@ -74,10 +84,9 @@
 
 		private ElementConfiguration CreateElementConfiguration()
 		{
-			IDmsProtocol elementProtocol = null;
-			List<IDmsProtocol> protocols = ds.GetProtocols().ToList();
+			IDmsProtocol elementProtocol;
 
-			elementProtocol = protocols.First(protocol => protocol.Name.Equals(elementProtocolName));
+			elementProtocol = ds.GetProtocol(elementProtocolName, elementProtocolVersion);
 
 			if (elementProtocol == null)
 			{
@@ -92,7 +101,7 @@
 
 		private List<IElementConnection> CreateElementConnection()
 		{
-			ITcp tcp = new Tcp(elementIpAddress, 443);
+			ITcp tcp = new Tcp(elementIpAddress, defaultPort);
 			HttpConnection httpConnection = new HttpConnection(tcp);
 			List<IElementConnection> connection = new List<IElementConnection> { httpConnection };
 			return connection;
