@@ -7,6 +7,7 @@
 	{
 		public ElementCreationView(IEngine engine) : base(engine)
 		{
+			Title = "Create New XPERTrak Element";
 			Label elementNameLabel = new Label("Element name");
 			Label elementIpAddress = new Label("IP address");
 			Label elementScript = new Label("Script to execute");
@@ -17,7 +18,7 @@
 				PlaceHolder = "Element Name",
 			};
 			IpAddress = new TextBox { PlaceHolder = "IP Address"};
-			ScriptName = new TextBox("Default Script");
+			Scripts = new DropDown();
 			ProtocolVersions = new DropDown();
 
 			AddWidget(elementNameLabel, 0, 0);
@@ -25,7 +26,7 @@
 			AddWidget(elementIpAddress, 1, 0);
 			AddWidget(IpAddress, 1, 1);
 			AddWidget(elementScript, 2, 0);
-			AddWidget(ScriptName, 2, 1);
+			AddWidget(Scripts, 2, 1);
 			AddWidget(protocolVersion, 3, 0);
 			AddWidget(ProtocolVersions, 3, 1);
 			AddWidget(Create, 4, 0);
@@ -35,7 +36,7 @@
 
 		public TextBox IpAddress { get; private set; }
 
-		public TextBox ScriptName { get; private set; }
+		public DropDown Scripts { get; private set; }
 
 		public DropDown ProtocolVersions { get; private set; }
 

@@ -18,6 +18,7 @@
 		private readonly IDma elementAgent;
 		private readonly int defaultPort = 443;
 		private readonly string elementProtocolName = "Viavi Solutions XPERTrak";
+		private readonly string defaultScriptsFolder = "Measurements Points Scripts";
 		private string elementProtocolVersion;
 		private string elementName;
 		private string elementIpAddress;
@@ -43,6 +44,12 @@
 			var protocols = ds.GetProtocols();
 			var protocol = protocols.Where(x => x.Name == elementProtocolName).ToList();
 			return protocol;
+		}
+
+		public List<string> LoadAvailableScripts()
+		{
+			var availableScripts = ds.GetScripts().Where(x => x.Folder == defaultScriptsFolder).ToList();
+			return availableScripts.Select(x => x.Name).ToList();
 		}
 
 		public void CreateElement()
