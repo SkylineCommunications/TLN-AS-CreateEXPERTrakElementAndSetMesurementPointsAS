@@ -19,6 +19,8 @@
 		private readonly int defaultPort = 443;
 		private readonly string elementProtocolName = "Viavi Solutions XPERTrak";
 		private readonly string defaultScriptsFolder = "Measurements Points Scripts";
+		private readonly string defaultViewName = "XPERTrak Monitoring";
+		private readonly int rootViewId = -1;
 		private string elementProtocolVersion;
 		private string elementName;
 		private string elementIpAddress;
@@ -56,25 +58,36 @@
 		{
 			if (!ValidateElementName())
 			{
-				engine.ExitFail("Element with this name already exists!");
+				engine.ExitFail("Element not created - Element with this name already exists!");
 			}
 
 			if (!ValidateIP())
 			{
-				engine.ExitFail("IP not valid!");
+				engine.ExitFail("Element not created - IP not valid!");
+			}
+
+			if (!ds.ViewExists(defaultViewName))
+			{
+				ds.CreateView(new ViewConfiguration(defaultViewName, ds.GetView(rootViewId)));
 			}
 
 			ElementConfiguration configuration = CreateElementConfiguration();
 			if (ValidateAutomationScript())
 			{
+				configuration.Views.Add(ds.GetView(defaultViewName));
 				elementAgent.CreateElement(configuration);
 				SubScriptOptions subScript = engine.PrepareSubScript(elementAutomationScript);
 				subScript.StartScript();
+				if(subScript.HadError)
+				{
+					engine.ExitSuccess("Element created! - Error with subscript, check logging for more information!");
+				}
+
 				engine.ExitSuccess("Element created!");
 			}
 			else
 			{
-				engine.ExitFail("Automation script not found!");
+				engine.ExitFail("Elemenet created - Automation script not found!");
 			}
 		}
 

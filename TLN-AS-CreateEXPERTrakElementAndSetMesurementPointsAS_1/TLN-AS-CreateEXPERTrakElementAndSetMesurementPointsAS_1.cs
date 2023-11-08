@@ -51,10 +51,12 @@ namespace TLN_AS_CreateEXPERTrakElementAndSetMesurementPointsAS_1
 				{
 					if (ex.Message.Equals("Element created!"))
 					{
+						engine.GenerateInformation(ex.Message);
 						engine.ExitSuccess(ex.Message);
 					}
 					else
 					{
+						engine.GenerateInformation(ex.Message);
 						engine.ExitFail(ex.Message);
 					}
 				}
